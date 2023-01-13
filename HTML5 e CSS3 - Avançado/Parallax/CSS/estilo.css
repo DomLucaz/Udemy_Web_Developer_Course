@@ -1,0 +1,79 @@
+/* Pagina inicial */	
+
+@font-face {
+	font-family: "Purple Smile";
+	src: url("../CSS/fonte/Purple-Smile.woff")
+}
+.conteudo {
+	color: #777;
+	background-color: white;
+	text-align:justify ;
+	padding: 50px 80px;
+}
+
+.conteudo-titulo {
+	position: absolute;
+	left: 0%;
+	top: 45%;
+	width: 100%;
+	text-align: center;
+	
+}
+
+.conteudo-titulo span.titulo {
+	font-family: "Purple Smile";
+	color: #fff;
+	background-color: #111;
+	padding: 18px;
+	font-size: 25px;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+}
+
+h3{
+	font-family: "Purple Smile";
+	text-transform: uppercase;
+	color:#111;
+	text-align: center;
+}
+
+body, html {
+	margin: 0;
+	font: 16px "Lato", sans-serif;
+	color: #777;
+	height: 100%;
+	/* border: 1px solid red; */
+}
+
+p {
+	margin-bottom: 20px;
+}
+/* Efeito Parallax */	
+
+.caixa1, .caixa2, .caixa3, .caixa4{
+	/* border: 1px solid red; */
+	position: relative;
+	height: 100%;
+	opacity: 0.6;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.caixa1 {
+	background-image: url(../imagens/imagem1.jpg);
+}
+
+.caixa2{
+	background-image: url(../imagens/imagem2.jpg);
+}
+
+.caixa3{
+	background-image: url(../imagens/imagem3.jpg);
+}
+
+.caixa4{
+	background-image: url(../imagens/imagem4.jpg);
+}
+
