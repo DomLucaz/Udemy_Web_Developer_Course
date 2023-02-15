@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keybord and Mouse Events</title>
+    <script>
+        function activeArea() {
+            document.getElementById('area').style.background = "yellow"
+        }
+
+        function validatedArea() {
+            var valueArea = document.getElementById('area').value
+
+            if (valueArea.length < 3) {
+                document.getElementById('area').style.background = "red"
+            }
+
+            else {
+                document.getElementById('area').style.background = "green"
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <h1>Style Manipulation</h1>
+
+        <input type="text" placeholder="Digite seu nome" id="area" onfocus="activeArea()" keypress="validatedArea()">
+    </div>
+</body>
+
+</html>
