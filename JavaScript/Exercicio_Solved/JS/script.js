@@ -38,6 +38,8 @@ function calcular() {
     //testes condicionais para identificar a classificação do peso com base no imc
     let classificacao = ''
 
+    let resultado1 = ''
+
     if (IMC <= 16) {
         classificacao = 'Baixo peso - MUITO GRAVE '
     }
@@ -70,8 +72,6 @@ function calcular() {
         classificacao = 'Obesidade grau III'
     }
 
-    // Limita a quantidade de números após a vírgula para 2
-    function exitAlert(){
-    alert (nome +', possui índice de massa corporal igual a ' + M.toFixed(2) + ', sendo classificado como: ' + classificacao)
-    }
+    resultado1 = nome +', possui índice de massa corporal igual a ' + IMC.toFixed(2) + ', sendo classificado como: ' + classificacao
+    document.getElementById('resultado').innerText = resultado1
 }

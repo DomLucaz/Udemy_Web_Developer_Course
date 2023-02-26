@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de IMC</title>
-    <link rel="stylesheet" type="text/css" href="./estilo.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/estilo.css">
     <script src="./JS/script.js"></script>
 </head>
 
 <body>
-    <section id="container">
+    <section class="container">
         <form>
             <label for="nome"> Nome:</label><br>
             <input type="text" id="nome" name="nome"><br>
@@ -25,8 +25,9 @@
         <div class="botao">
             <button onclick="calcular()">Calcular</button>
         </div>
+        <div id="resultado">
+        </div>
     </section>
-
 </body>
 
 </html>
