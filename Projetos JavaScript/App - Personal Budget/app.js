@@ -33,12 +33,36 @@ class Bd {
         let nextId = localStorage.getItem('id')
         return parseInt(nextId) + 1
     }
-    record(d) {
+    insert(d) {
         let id = this.getNextID()
 
         localStorage.setItem(id, JSON.stringify(d))
 
         localStorage.setItem('id', id)
+    }
+
+    loadAllInserts(){
+
+        //Expenses array
+        let expenses = Array()
+
+        let id = localStorage.getItem('id')
+
+        //recover all the expenses inserted in localStorage
+        for (let i = 1; i <= id; i++) {
+
+            //recover the expense
+            let expense = JSON.parse(localStorage.getItem(i))
+            
+            //There's a possibility that some index was removed
+            //In that case, it has to be ignored
+            if(expense === null){
+                continue
+            }
+            expenses.push(expense)
+        }
+
+        return expenses
     }
 }
 
@@ -57,10 +81,33 @@ function registerCharges() {
 
 
     if(expense.dataAuthen()) {
-    //bd.record(expense)
-        console.log('Dados válidos')
+    bd.insert(expense)
+
+    document.getElementById('modal_title').innerHTML = 'Data inserted successfully'
+    document.getElementById('modal_title_div').className = 'modal-header text-sucess'
+    document.getElementById('modal_content').innerHTML = 'Expense saved successfully'
+    document.getElementById('modal_btn').innerHTML = 'Back'
+    document.getElementById('modal_btn').className = 'btn btn-success'
+    //sucess dialog
+    $('#insertExpense').modal('show')
     } else{
-        console.log('Dados inválidos')
+        //erro dialog
+
+    document.getElementById('modal_title').innerHTML = 'Data insertion error'
+    document.getElementById('modal_title_div').className = 'modal-header text-sucess'
+    document.getElementById('modal_content').innerHTML = 'Check that all field are filled correctly'
+    document.getElementById('modal_btn').innerHTML = 'Back and revise'
+    document.getElementById('modal_btn').className = 'btn btn-danger'
+    $('#insertExpense').modal('show')
     }
 }
 
+
+function loadExpenseList(){
+
+    let expenses = Array()
+
+    expenses = bd.loadAllInserts()
+
+    console.log(expenses)
+}
