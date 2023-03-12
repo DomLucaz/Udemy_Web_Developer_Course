@@ -63,14 +63,16 @@
 
     <div class="row mb-2">
       <div class="col-md-2">
-        <select class="form-control" id="ano">
+        <select class="form-control" id="year">
           <option value="">Ano</option>
-          <option value="2018">2018</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
         </select>
       </div>
 
       <div class="col-md-2">
-        <select class="form-control" id="mes">
+        <select class="form-control" id="mounth">
           <option value="">Mounth</option>
           <option value="1">January</option>
           <option value="2">February</option>
@@ -88,13 +90,13 @@
       </div>
 
       <div class="col-md-2">
-        <input type="text" class="form-control" placeholder="Day" id="dia" />
+        <input type="text" class="form-control" placeholder="Day" id="day" />
       </div>
 
       <div class="col-md-6">
         <select class="form-control" id="type">
-          <option>Type</option>
-          <option value="1">Feeding/option>
+          <option value="">Type</option>
+          <option value="1">Feeding</option>
           <option value="2">Education</option>
           <option value="3">Leisure</option>
           <option value="4">Health</option>
@@ -113,7 +115,7 @@
       </div>
 
       <div class="col-md-2 d-flex justify-content-end">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" onclick="serveyExpense()">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -131,11 +133,7 @@
               <th></th>
             </tr>
           </thead>
-
-          <tbody>
-            <tr>
-              <td>15/03/2018</td>
-            </tr>
+          <tbody id="expensesList">
           </tbody>
         </table>
       </div>
