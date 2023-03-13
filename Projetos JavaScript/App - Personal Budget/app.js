@@ -59,6 +59,7 @@ class Bd {
             if(expense === null){
                 continue
             }
+            expense.id = i
             expenses.push(expense)
         }
 
@@ -74,40 +75,46 @@ class Bd {
        console.log(expensesFiltered)
 
        //year
-       if(expense.year !='') {
+       if(expense.year != '') {
         console.log('filter of year')
         expensesFiltered = expensesFiltered.filter(d => d.year == expense.year)
        }
 
        //mounth
-       if(expense.mounth !='') {
+       if(expense.mounth != '') {
         console.log('filter of mounth')
         expensesFiltered = expensesFiltered.filter(d => d.mounth == expense.mounth)
        }
 
        //day
-       if(expense.day !='') {
+       if(expense.day != '') {
         console.log('filter of day')
         expensesFiltered = expensesFiltered.filter(d => d.day == expense.day)
        }
 
        //type
-       if(expense.type !='') {
+       if(expense.type != '') {
         console.log('filter of type')
         expensesFiltered = expensesFiltered.filter(d => d.type == expense.type)
        }
 
        //description
-       if(expense.description !='') {
+       if(expense.description != '') {
         console.log('filter of description')
         expensesFiltered = expensesFiltered.filter(d => d.description == expense.description)
        }
 
        //amount
-       if(expense.amount !='') {
+       if(expense.amount != '') {
         console.log('filter of amount')
         expensesFiltered = expensesFiltered.filter(d => d.amount == expense.amount)
        }
+
+       return expensesFiltered
+    }
+
+    remove(id){
+        localStorage.removeItem(id)
     }
 }
 
@@ -157,26 +164,18 @@ function registerCharges() {
 }
 
 
-function loadExpenseList(){
+function loadExpenseList(expanses = Array(), filter = false){
 
-    let expenses = Array()
-
-    expenses = bd.loadAllInserts()
+    if(expanses.length == 0 && filter == false){
+        expanses = bd.loadAllInserts()
+    }
 
     //selection tbody's array elements
     let expensesList = document.getElementById('expensesList')
-
-    /* 
-    <tr>
-        <th>Data</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Amount</th>
-        <th></th>
-    </tr>
-    */
+    expensesList.innerHTML = ''
+    
    //navegate expanses array, listing each expense in a dynamic way
-   expenses.forEach(function(d){
+   expanses.forEach(function(d){
 
     //create the lines (tr)
     let line = expensesList.insertRow()
@@ -198,9 +197,24 @@ function loadExpenseList(){
             break
     }
     line.insertCell(1).innerHTML = d.type
-
     line.insertCell(2).innerHTML = d.description
     line.insertCell(3).innerHTML = d.amount
+
+    //Exclusion's botton execution
+    let btn = document.createElement("button")
+    btn.className = 'btn btn-danger'
+    btn.innerHTML = '<i class="fas fa-times"><i>'
+    btn.id = `id_expense_${d.id}`
+    btn.onclick = function(){
+
+        //Remove of expense
+        let id = this.id.replace('id_expense_','')
+        //alert(id)
+        bd.remove(id)
+        window.location.reload()
+    }
+    line.insertCell(4).append(btn)
+    console.log(d)
    })
 }
 
@@ -214,5 +228,7 @@ function serveyExpense(){
 
     let expense = new Expense (year, mounth, day, type, description, amount)
 
-    bd.servey(expense)
+    let expenses = bd.servey(expense)
+
+    this.loadExpenseList(expenses, true)
 }
